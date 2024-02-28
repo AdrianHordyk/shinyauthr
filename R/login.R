@@ -26,7 +26,7 @@ loginUI <- function(id,
                     cookie_expiry = 7) {
   ns <- shiny::NS(id)
 
-  shinyjs::hidden(
+  # shinyjs::hidden(
     shiny::div(
       id = ns("panel"),
       style = "width: 500px; max-width: 100%; margin: 0 auto; padding: 20px;",
@@ -54,7 +54,7 @@ loginUI <- function(id,
           )
         )
       )
-    )
+    # )
   )
 }
 
@@ -147,12 +147,12 @@ loginServer <- function(id,
       shiny::observe({
         if (cookie_logins) {
           if (credentials$user_auth) {
-            shinyjs::hide(id = "panel")
+            shinyjs::hide(id = "panel", asis=TRUE)
           } else if (credentials$cookie_already_checked) {
-            shinyjs::show(id = "panel")
+            shinyjs::show(id = "panel", asis=TRUE)
           }
         } else {
-          shinyjs::toggle(id = "panel", condition = !credentials$user_auth)
+          shinyjs::toggle(id = "panel", condition = !credentials$user_auth, asis=TRUE)
         }
       })
 
